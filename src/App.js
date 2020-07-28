@@ -60,7 +60,7 @@ class App extends React.Component {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#ffffff";
 
-      for (var i = 0; i < bar_count; i++) {
+      for (let i = 0; i < bar_count; i++) {
         bar_pos = i * 4;
         bar_width = 2;
         bar_height = -(fbc_array[i] / 2);
@@ -70,19 +70,23 @@ class App extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    this.audioContext.resume();
+  }
+
   render() {
     return (
       <div className="App">
         <div id="player">
           <div id="audio"></div>
           <canvas id="canvas"></canvas>
-          {/* <button
+          <button
             onClick={() => {
               this.setState({ userTouch: true });
             }}
           >
             User interaction
-          </button> */}
+          </button>
         </div>
       </div>
     );
